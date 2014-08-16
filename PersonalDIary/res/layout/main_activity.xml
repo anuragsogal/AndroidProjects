@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+     android:background="#FF9900">
+
+    <EditText
+        android:id="@+id/searchText"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dp"
+        style="@style/editTextDecoration"
+         />
+
+    <Button
+        android:id="@+id/AddStoryButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/searchText"
+        android:text="@string/addStoryButtonText"
+        android:onClick="addStory" />
+
+    <ListView
+        android:id="@+id/storyListView"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/AddStoryButton"
+        android:layout_centerHorizontal="true" >
+	
+    </ListView>
+
+</RelativeLayout>

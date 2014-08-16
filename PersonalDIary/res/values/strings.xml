@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PersonalDiary</string>
+    <string name="titleLabel">TITLE:</string>
+    <string name="bodyLabel">BODY:</string>
+    <string name="imageLabel">IMAGE NAME:</string>
+	<string name="addImageLabel">ADD IMAGE:</string>
+	<string name="addImageButtonText">Add Image</string>
+	<string name="addVideoLabel">ADD VIDEO:</string>
+	<string name="addVideoButtonText">Add Video</string>
+	<string name="createStoryButtonText">CREATE</string>
+	<string name="cancelStoryButtonText">CANCEL</string>
+	<string name="clearStoryButtonText">CLEAR</string>
+	<string name="addStoryButtonText">ADD</string>
+</resources>

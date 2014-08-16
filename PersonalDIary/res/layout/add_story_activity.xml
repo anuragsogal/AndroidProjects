@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     android:background="#FF9900" >
+
+    <TextView
+        android:id="@+id/storyTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/titleLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
+        
+    <EditText
+        style="@style/editTextDecoration"
+        android:id="@+id/storyTitleText"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_alignTop="@+id/storyTitleLabel"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"/>
+    
+    
+    <TextView
+        android:id="@+id/storyBodyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="@+id/storyTitleLabel"
+        android:layout_below="@+id/storyTitleLabel"
+        android:text="@string/bodyLabel"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp"/>
+    
+    <EditText
+        style="@style/editTextDecoration"
+        android:id="@+id/storyBodyText"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_alignTop="@+id/storyBodyLabel"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"/>
+    
+     <TextView
+        android:id="@+id/storyImageLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="@+id/storyBodyLabel"
+        android:layout_below="@+id/storyBodyLabel"
+        android:text="@string/imageLabel"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp"/>
+     
+      <EditText
+        style="@style/editTextDecoration"
+        android:id="@+id/storyImageText"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_alignTop="@+id/storyImageLabel"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"/>
+      
+     <TextView
+        android:id="@+id/storyImageButtonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="@+id/storyImageLabel"
+        android:layout_below="@+id/storyImageLabel"
+        android:text="@string/addImageLabel"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp"/>
+
+     <Button
+         android:id="@+id/AddImageButton"
+         android:layout_width="200dp"
+         android:layout_height="35dp"
+         android:layout_alignTop="@+id/storyImageButtonLabel"
+         android:layout_alignLeft="@+id/storyImageText"
+         android:text="@string/addImageButtonText"
+         android:onClick="addImage" />
+     
+     <TextView
+        android:id="@+id/storyVideoButtonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="@+id/storyImageButtonLabel"
+        android:layout_below="@+id/storyImageButtonLabel"
+        android:text="@string/addVideoLabel"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="5dp"/>
+     
+     <Button
+         android:id="@+id/AddVideoButton"
+         android:layout_width="200dp"
+         android:layout_height="35dp"
+         android:layout_alignTop="@+id/storyVideoButtonLabel"
+         android:layout_alignLeft="@+id/AddImageButton"
+         android:text="@string/addVideoButtonText"
+         android:onClick="addVideo" />
+
+     <Button
+         android:id="@+id/createButton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignLeft="@+id/storyVideoButtonLabel"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="18dp"
+         android:text="@string/createStoryButtonText"
+         android:onClick="createStory" />
+
+     <Button
+         android:id="@+id/cancelButton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@+id/createButton"
+         android:layout_alignRight="@+id/AddVideoButton"
+         android:text="@string/cancelStoryButtonText" />
+
+     <Button
+         android:id="@+id/clearButton"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignTop="@+id/createButton"
+         android:layout_alignLeft="@+id/AddVideoButton"
+         android:text="@string/clearStoryButtonText" />
+
+</RelativeLayout>
