@@ -11,4 +11,5 @@
 	<string name="cancelStoryButtonText">CANCEL</string>
 	<string name="clearStoryButtonText">CLEAR</string>
 	<string name="addStoryButtonText">ADD</string>
+	<string name="storyImageText">Story Image</string>
 </resources>
