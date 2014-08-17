@@ -21,24 +21,27 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 	String[] from= {"_id","story_tile"};
 	int[] to={R.id.storyIDTextView,R.id.storyTitleTextView};
 	SimpleCursorAdapter cAdapter;
+	ListView listView;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity: onCreate()");
 		this.setContentView(R.layout.main_activity);
-		ListView listView=(ListView)this.findViewById(R.id.storyListView);
+		listView=(ListView)this.findViewById(R.id.storyListView);
 		cAdapter=new SimpleCursorAdapter(this.getApplicationContext(),R.layout.list_view_layout,null,from,to,0);
 		this.getLoaderManager().initLoader(1, null, this);
+		
 		listView.setOnItemClickListener(new OnItemClickListener(){
 
-			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				TextView viewTXT=(TextView)view.findViewById(R.id.storyTitleTextView);
-				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity: List item position: "+position);
-				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity: List item id: "+id);
-				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity: Item title is: "+viewTXT.getText());
+				
+				TextView storyIDTxt=(TextView)view.findViewById(R.id.storyIDTextView);
+				TextView storyTitleTxt=(TextView)view.findViewById(R.id.storyTitleTextView);
+				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity:ID of item is: "+storyIDTxt.getText().toString());
+				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity:Title of item is: "+storyTitleTxt.getText().toString());
 			}});
+		
 		listView.setAdapter(cAdapter);
 		
 	}
@@ -100,6 +103,7 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 		
 		
 	}
+	
 	
 
 
