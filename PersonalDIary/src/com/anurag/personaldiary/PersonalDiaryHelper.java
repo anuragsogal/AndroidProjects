@@ -24,7 +24,7 @@ public class PersonalDiaryHelper {
 		if(typeOfFile.equalsIgnoreCase(PersonalDiaryConstants.IMAGE_FILE)){
 			File picDirectory= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 			File imageFileDirectory= new File(picDirectory,"personalDiaryPics");
-			String imageFileText = imageFileDirectory.toString()+"/"+"PersonalDiaryIMG_"+dateOfCreation+".jpg";
+			String imageFileText = imageFileDirectory.toString()+"/"+"PersonalDiaryIMG_"+dateOfCreation+".png";
 			File imageFile=new File(imageFileText);
 			return Uri.fromFile(imageFile);
 		}

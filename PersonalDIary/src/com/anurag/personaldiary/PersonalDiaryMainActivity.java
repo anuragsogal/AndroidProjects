@@ -40,6 +40,8 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 				TextView storyTitleTxt=(TextView)view.findViewById(R.id.storyTitleTextView);
 				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity:ID of item is: "+storyIDTxt.getText().toString());
 				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity:Title of item is: "+storyTitleTxt.getText().toString());
+				displayStoryDetails(storyIDTxt.getText().toString(),storyTitleTxt.getText().toString());
+				
 			}});
 		
 		listView.setAdapter(cAdapter);
@@ -105,7 +107,12 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 	}
 	
 	
-
+	private void displayStoryDetails(String storyID, String storyTitle ){
+		Intent displayStoryDetailsIntent=new Intent(this.getApplicationContext(),PersonalDiaryDisplayStoryDetailActivity.class);
+		displayStoryDetailsIntent.putExtra("StoryID", storyID);
+		displayStoryDetailsIntent.putExtra("StoryTitle", storyTitle);
+		this.startActivity(displayStoryDetailsIntent);
+	}
 
 
 }

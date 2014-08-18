@@ -30,7 +30,7 @@ public class PersonalDiaryContentProvider extends ContentProvider {
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		String tableName=uri.getPath().replace("/","");
-		Cursor cursorObj=dataBase.query(tableName, projection, null, null, null, null, null);
+		Cursor cursorObj=dataBase.query(tableName, projection, selection, selectionArgs, null, null, null);
 		return cursorObj;
 	}
 
