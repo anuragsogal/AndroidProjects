@@ -1,11 +1,26 @@
 package com.anurag.personaldiary;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URI;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.net.http.AndroidHttpClient;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -47,6 +62,9 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The video path is: "+videoPath);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The image path is: "+imagePath);
 		vView.setVideoURI(Uri.parse(videoPath));
+		URI svcUri=URI.create("http://videosvc.elasticbeanstalk.com/anurag/videoService");
+		HTTPDownloadTask asycTask=new HTTPDownloadTask();
+		asycTask.execute(svcUri);
 		
 	}
 	
@@ -63,5 +81,50 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 			}
 		});
 	}
+	
+	private class HTTPDownloadTask extends AsyncTask<URI, Void, String>{
+		
 
+		protected String doInBackground(URI... params) {
+			
+			Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity:Inside AsyncTask, the URI is: "+params[0]);
+			String response=new String();
+			HttpGet getReq= new HttpGet();
+			AndroidHttpClient httpClient=AndroidHttpClient.newInstance("anurag");
+			getReq.setURI(params[0]);
+			try {
+				 response=httpClient.execute(getReq, new ResponseHandler<String>(){
+						String responseJSON;
+					@Override
+					public String handleResponse(HttpResponse arg0)
+							throws ClientProtocolException, IOException {
+						Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity:Inside response handler");
+						BufferedReader reader = new BufferedReader(new InputStreamReader(arg0.getEntity().getContent(), "UTF-8"));
+						JSONTokener tokener= new JSONTokener(reader.readLine());
+						 try {
+							JSONObject object = (JSONObject) tokener.nextValue();
+							responseJSON=object.getString("description");
+							Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity:Inside response handler.The response is: "+responseJSON);
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return responseJSON;
+					}});
+			} catch (ClientProtocolException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return response;
+		}
+
+		 protected void onPostExecute (String response) {
+				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity:Inside onPostExecute().The response is: "+response);
+		 }
+
+		
+	}
 }
