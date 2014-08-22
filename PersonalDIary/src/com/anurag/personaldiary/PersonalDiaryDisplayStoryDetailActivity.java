@@ -22,6 +22,10 @@ import android.net.Uri;
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.HandlerThread;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -37,7 +41,10 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 	MediaController mController;
 	VideoView vView;
 	ImageView iView;
-	
+	HandlerThread httpHandlerThread;
+	PersonalDiaryHTTPRunnable httpRunnable;
+	Handler httpHandlerThreadHandler;
+	Handler thisThreadHandler;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -61,14 +68,30 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 			imagePath=data.getString(1);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The video path is: "+videoPath);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The image path is: "+imagePath);
-		vView.setVideoURI(Uri.parse(videoPath));
+		//vView.setVideoURI(Uri.parse(videoPath));
 		URI svcUri=URI.create("http://videosvc.elasticbeanstalk.com/anurag/videoService");
 		HTTPDownloadTask asycTask=new HTTPDownloadTask();
-		asycTask.execute(svcUri);
+		//asycTask.execute(svcUri);
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Init runnable");
+		httpRunnable=new PersonalDiaryHTTPRunnable(svcUri,new Handler(this.getMainLooper(),new Handler.Callback() {
+			public boolean handleMessage(Message msg) {
+				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Looks like there was a message");
+				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The message is **** "+msg.getData().get("HTTPRESPONSE"));
+				return true;
+			}
+		}));
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Init handler thread");
+		httpHandlerThread=new HandlerThread("downloadHTTP");
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Starting the thread handler thread");
+		httpHandlerThread.start();
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Getting the handler associated with the handler thread");
+		httpHandlerThreadHandler=new Handler(httpHandlerThread.getLooper());
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Posting runnable to the handler thread");
+		httpHandlerThreadHandler.post(httpRunnable);
 		
 	}
 	
-	public void onResume(){
+	/*public void onResume(){
 		super.onResume();
 		iView.setImageURI(Uri.parse(imagePath));
 		iView.setVisibility(ImageView.VISIBLE);
@@ -80,7 +103,7 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 				
 			}
 		});
-	}
+	}*/
 	
 	private class HTTPDownloadTask extends AsyncTask<URI, Void, String>{
 		
