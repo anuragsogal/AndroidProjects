@@ -1,9 +1,13 @@
-package com.anurag.personaldiary;
+package com.personaldiary.mainpackage;
+
+import com.anurag.personaldiary.R;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -17,11 +21,13 @@ public class PersonalDiaryAddStoryActivity extends Activity{
 	
 	ContentResolver cResolver;
 	ContentValues cValue;
+	LocationManager locationManager;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryAddStoryActivity: onCreate()");
 		this.setContentView(R.layout.add_story_activity);
+		locationManager=(LocationManager)this.getSystemService(LOCATION_SERVICE);
 		cResolver=this.getContentResolver();
 		cValue=new ContentValues();
 	}
@@ -108,6 +114,18 @@ public class PersonalDiaryAddStoryActivity extends Activity{
 		
 		
 	}
+	
+	/*public void addLocation(View v){
+		if(v.getId()==R.id.AddLocationButton)
+			Log.d(PersonalDiaryConstants.TAG,"Capturing the location of the story");
+		Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+		locationManager.
+		double longitude = location.getLongitude();
+		double latitude = location.getLatitude();
+		Log.d(PersonalDiaryConstants.TAG,"Longitude is: "+longitude);
+		Log.d(PersonalDiaryConstants.TAG,"Latitude is: "+latitude);
+		
+	}*/
 	
 	public void createStory(View v){
 		Log.d(PersonalDiaryConstants.TAG,"Creating the story");

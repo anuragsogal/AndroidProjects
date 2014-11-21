@@ -1,4 +1,4 @@
-package com.anurag.personaldiary;
+package com.personaldiary.mainpackage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -26,6 +27,7 @@ public class PersonalDiaryHTTPRunnable implements Runnable {
 	URI uri;
 	AndroidHttpClient httpClient;
 	HttpGet getReq;
+	HttpPost postReq;
 	JSONTokener tokener;
 	String responseString;
 	String responseToReturn;

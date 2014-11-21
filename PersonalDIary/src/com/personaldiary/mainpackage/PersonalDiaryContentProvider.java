@@ -1,4 +1,4 @@
-package com.anurag.personaldiary;
+package com.personaldiary.mainpackage;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

@@ -11,7 +11,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="@string/titleLabel"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"/>
         
     <EditText
@@ -31,7 +31,7 @@
         android:layout_alignParentLeft="@+id/storyTitleLabel"
         android:layout_below="@+id/storyTitleLabel"
         android:text="@string/bodyLabel"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"/>
     
     <EditText
@@ -50,7 +50,7 @@
         android:layout_alignParentLeft="@+id/storyBodyLabel"
         android:layout_below="@+id/storyBodyLabel"
         android:text="@string/imageLabel"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"/>
      
       <EditText
@@ -69,7 +69,7 @@
         android:layout_alignParentLeft="@+id/storyImageLabel"
         android:layout_below="@+id/storyImageLabel"
         android:text="@string/addImageLabel"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"/>
 
      <Button
@@ -88,7 +88,7 @@
         android:layout_alignParentLeft="@+id/storyImageButtonLabel"
         android:layout_below="@+id/storyImageButtonLabel"
         android:text="@string/addVideoLabel"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="5dp"/>
      
      <Button
@@ -99,6 +99,66 @@
          android:layout_alignLeft="@+id/AddImageButton"
          android:text="@string/addVideoButtonText"
          android:onClick="addVideo" />
+     
+     <TextView
+        android:id="@+id/storyLocationButtonLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="@+id/storyVideoButtonLabel"
+        android:layout_below="@+id/storyVideoButtonLabel"
+        android:text="@string/location"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"/>
+     
+     <Button
+         android:id="@+id/AddLocationButton"
+         android:layout_width="200dp"
+         android:layout_height="35dp"
+         android:layout_alignTop="@+id/storyLocationButtonLabel"
+         android:layout_alignLeft="@+id/AddImageButton"
+         android:text="@string/addLocationButtonText"
+         android:onClick="addLocation" />
+     
+     <TextView
+        android:id="@+id/storyLatitudeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="@+id/storyLocationButtonLabel"
+        android:layout_below="@+id/storyLocationButtonLabel"
+        android:text="@string/lattitude"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="5dp"/>
+     
+     <TextView
+         android:id="@+id/storyLatitudeText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/storyLatitudeLabel"
+         android:layout_alignBottom="@+id/storyLatitudeLabel"
+         android:layout_alignLeft="@+id/AddLocationButton"
+         />
+     
+     <TextView
+        android:id="@+id/storyLongitutdeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="@+id/storyLocationButtonLabel"
+        android:layout_below="@+id/storyLatitudeLabel"
+        android:text="@string/longitutde"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"/>
+     
+     
+     <TextView
+         android:id="@+id/storyLongitutdeText"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/storyLongitutdeLabel"
+         android:layout_alignBottom="@+id/storyLongitutdeLabel"
+         android:layout_alignLeft="@+id/storyLatitudeText"
+        />
+     
+   
 
      <Button
          android:id="@+id/createButton"
@@ -118,12 +178,5 @@
          android:layout_alignRight="@+id/AddVideoButton"
          android:text="@string/cancelStoryButtonText" />
 
-     <Button
-         android:id="@+id/clearButton"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignTop="@+id/createButton"
-         android:layout_alignLeft="@+id/AddVideoButton"
-         android:text="@string/clearStoryButtonText" />
 
 </RelativeLayout>

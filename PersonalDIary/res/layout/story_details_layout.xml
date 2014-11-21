@@ -3,23 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <FrameLayout
+   <!--   <FrameLayout
         android:id="@+id/storyVideoViewHolder"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp" >
-        <VideoView
-          android:id="@+id/storyVideoView"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent"
-        >
-            
-        </VideoView>
-    </FrameLayout>
 
-    <FrameLayout
+     
+
+    </FrameLayout> -->
+    
+       <VideoView
+            android:id="@+id/storyVideoView"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp" 
+            android:layout_alignParentRight="true"
+   		    android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            
+            />
+       
+       
+       
+       
+
+   <!--   <FrameLayout
         android:id="@+id/storyImageViewHolder"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
@@ -35,6 +45,6 @@
             >
            
        </ImageView>
-    </FrameLayout>
+    </FrameLayout> -->
 
 </RelativeLayout>

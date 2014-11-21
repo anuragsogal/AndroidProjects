@@ -1,4 +1,4 @@
-package com.anurag.personaldiary;
+package com.personaldiary.mainpackage;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

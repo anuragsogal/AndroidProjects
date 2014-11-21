@@ -1,4 +1,4 @@
-package com.anurag.personaldiary;
+package com.personaldiary.mainpackage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,6 +12,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
+
+import com.anurag.personaldiary.R;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -50,8 +52,17 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Activity to display the story details");
 		this.setContentView(R.layout.story_details_layout);
+		Intent myIntent=this.getIntent();
+		/*DateToParcel data=myIntent.getParcelableExtra("PARCEL");
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Name in the Parcel "+data.getName());
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Age in the the Parcel "+data.getAge());
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Scores in the parcel "+data.getScores()[0]);
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Scores in the parcel "+data.getScores()[1]);
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Courses in the parcel "+data.getCourses()[0]);
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Courses in the parcel "+data.getCourses()[1]);*/
+
 	    vView=(VideoView)this.findViewById(R.id.storyVideoView);
-	    iView=(ImageView)this.findViewById(R.id.storyImageView);
+	    //iView=(ImageView)this.findViewById(R.id.storyImageView);
 	    mController=new MediaController(this);
 		vView.setMediaController(mController);
 		mController.setEnabled(false);
@@ -68,10 +79,15 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 			imagePath=data.getString(1);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The video path is: "+videoPath);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The image path is: "+imagePath);
-		//vView.setVideoURI(Uri.parse(videoPath));
-		URI svcUri=URI.create("http://videosvc.elasticbeanstalk.com/anurag/videoService");
+		vView.setVideoURI(Uri.parse(videoPath));
+		/*URI svcUri=URI.create("http://videosvc.elasticbeanstalk.com/anurag/videoService");
+		Intent downloadIntent=new Intent(this,PersonalDiaryHTTPService.class);
+		downloadIntent.putExtra("URI",svcUri.toString());
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Starting the service");
+		this.startService(downloadIntent);
+		this.stopService(downloadIntent);
 		HTTPDownloadTask asycTask=new HTTPDownloadTask();
-		//asycTask.execute(svcUri);
+		asycTask.execute(svcUri);
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Init runnable");
 		httpRunnable=new PersonalDiaryHTTPRunnable(svcUri,new Handler(this.getMainLooper(),new Handler.Callback() {
 			public boolean handleMessage(Message msg) {
@@ -88,13 +104,13 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		httpHandlerThreadHandler=new Handler(httpHandlerThread.getLooper());
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: Posting runnable to the handler thread");
 		httpHandlerThreadHandler.post(httpRunnable);
-		
+		httpHandlerThread.quit();*/
 	}
 	
-	/*public void onResume(){
+	public void onResume(){
 		super.onResume();
-		iView.setImageURI(Uri.parse(imagePath));
-		iView.setVisibility(ImageView.VISIBLE);
+		//iView.setImageURI(Uri.parse(imagePath));
+		//iView.setVisibility(ImageView.VISIBLE);
 			vView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 			public void onPrepared(MediaPlayer mp) {
 				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The video is ready to be played ");
@@ -103,9 +119,9 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 				
 			}
 		});
-	}*/
+	}
 	
-	private class HTTPDownloadTask extends AsyncTask<URI, Void, String>{
+/*	private class HTTPDownloadTask extends AsyncTask<URI, Void, String>{
 		
 
 		protected String doInBackground(URI... params) {
@@ -149,5 +165,5 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		 }
 
 		
-	}
+	} */
 }

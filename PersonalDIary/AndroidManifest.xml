@@ -10,7 +10,9 @@
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -18,7 +20,7 @@
         android:theme="@style/AppTheme" >
         
         <activity
-            android:name="com.anurag.personaldiary.PersonalDiaryMainActivity" 
+            android:name="com.personaldiary.mainpackage.PersonalDiaryMainActivity" 
             android:label="@string/app_name"
          >
          <intent-filter>
@@ -29,24 +31,29 @@
         </activity>
         
         <activity 
-         	android:name="com.anurag.personaldiary.PersonalDiaryAddStoryActivity"
+         	android:name="com.personaldiary.mainpackage.PersonalDiaryAddStoryActivity"
          	android:label="@string/app_name"
+         	android:exported="false"
             >
             
         </activity>
         
         <activity 
-            android:name="com.anurag.personaldiary.PersonalDiaryDisplayStoryDetailActivity"
+            android:name="com.personaldiary.mainpackage.PersonalDiaryDisplayStoryDetailActivity"
             android:label="@string/app_name"
+            
             >
             
         </activity>
         
         <provider
-         android:name="com.anurag.personaldiary.PersonalDiaryContentProvider" 
-         android:authorities="com.anurag.personaldiary.PersonalDiaryContentProvider" 
+         android:name="com.personaldiary.mainpackage.PersonalDiaryContentProvider" 
+         android:authorities="com.personaldiary.mainpackage.PersonalDiaryContentProvider" 
          android:exported="false" 
          />
+        
+        <service android:name="com.personaldiary.mainpackage.PersonalDiaryHTTPService"
+            android:permission="android.permission.INTERNET"/>
         
     </application>
 
