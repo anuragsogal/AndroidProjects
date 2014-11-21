@@ -17,4 +17,7 @@
 	<string name="clearStoryButtonText">CLEAR</string>
 	<string name="addStoryButtonText">ADD</string>
 	<string name="storyImageText">Story Image</string>
+	<string name="playAudio">PLAY AUDIO</string>
+	
+	
 </resources>

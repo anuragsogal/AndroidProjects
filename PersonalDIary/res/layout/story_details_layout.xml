@@ -1,50 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent" 
+    android:background="#FF9900" >
 
-   <!--   <FrameLayout
-        android:id="@+id/storyVideoViewHolder"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp" >
-
-     
-
-    </FrameLayout> -->
+     <TextView
+           android:id="@+id/title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginLeft="5dp"
+           android:text="@string/titleLabel" />  
+           
+        <TextView
+           android:id="@+id/body"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignLeft="@+id/title"
+           android:layout_below="@+id/title" 
+           android:layout_marginTop="15dp"
+           android:text="@string/bodyLabel" />
     
        <VideoView
             android:id="@+id/storyVideoView"
             android:layout_width="fill_parent"
-            android:layout_height="200dp" 
+            android:layout_height="150dp" 
             android:layout_alignParentRight="true"
    		    android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
+            android:layout_marginTop="100dp"
             
             />
        
+        <TextView
+           android:id="@+id/playaudio"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignLeft="@+id/title"
+           android:layout_below="@+id/body" 
+           android:layout_marginTop="20dp"
+           android:text="@string/playAudio" />
        
-       
-       
-
-   <!--   <FrameLayout
-        android:id="@+id/storyImageViewHolder"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:layout_below="@+id/storyVideoViewHolder"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" 
-       >
+        <Button
+            android:id="@+id/playAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/playaudio"
+            android:layout_alignBottom="@+id/playaudio"
+            android:layout_alignParentRight="true"
+            android:text="@string/playAudio" />
+        
+         <TextView
+            android:id="@+id/imageLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/playaudio"
+            android:layout_below="@+id/storyVideoView"
+            android:layout_marginTop="10dp"
+            android:text="@string/imageLabel" />
 
        <ImageView
            android:id="@+id/storyImageView"
-           android:layout_width="fill_parent"
-           android:layout_height="230dp"
-            >
-           
-       </ImageView>
-    </FrameLayout> -->
+           android:layout_width="200dp"
+           android:layout_height="170dp"
+           android:layout_alignParentBottom="true"
+           android:layout_alignParentRight="true" />
 
 </RelativeLayout>
