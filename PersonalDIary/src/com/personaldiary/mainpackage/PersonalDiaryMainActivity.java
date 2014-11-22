@@ -42,8 +42,6 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity: onCreate()");
 		this.setContentView(R.layout.main_activity);
 		listView=(ListView)this.findViewById(R.id.storyListView);
-		cAdapter=new SimpleCursorAdapter(this.getApplicationContext(),R.layout.list_view_layout,null,from,to,0);
-		this.getLoaderManager().initLoader(1, null, this);
 		res=this.getResources();
 		listView.setLongClickable(true);
 		listView.setOnItemClickListener(new OnItemClickListener(){
@@ -53,8 +51,6 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 				
 				TextView storyIDTxt=(TextView)view.findViewById(R.id.storyIDTextView);
 				TextView storyTitleTxt=(TextView)view.findViewById(R.id.storyTitleTextView);
-				//Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity:ID of item is: "+storyIDTxt.getText().toString());
-				//Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity:Title of item is: "+storyTitleTxt.getText().toString());
 				displayStoryDetails(storyIDTxt.getText().toString(),storyTitleTxt.getText().toString());
 				
 			}});
@@ -64,35 +60,23 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 		storyListHelper.setMainActivityRef(this);
 		listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
 		listView.setMultiChoiceModeListener(storyListHelper);
-		
-		
-		
-	/*	listView.setOnItemLongClickListener(new OnItemLongClickListener(){
-
-			
-
-			@Override
-			public boolean onItemLongClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				ImageView iv= (ImageView)view.findViewById(R.id.imageViewTransition);
-				iv.setImageDrawable(res.getDrawable(R.drawable.ic_launcher));
-				TextView storyIDTxt=(TextView)view.findViewById(R.id.storyIDTextView);
-				TextView storyTitleTxt=(TextView)view.findViewById(R.id.storyTitleTextView);
-				Log.d(PersonalDiaryConstants.TAG,"Inside setOnLongClickListener PersonalDiaryMainActivity:ID of item is: "+storyIDTxt.getText().toString());
-				Log.d(PersonalDiaryConstants.TAG,"Inside setOnLongClickListener PersonalDiaryMainActivity:Title of item is: "+storyTitleTxt.getText().toString());
-				//displayStoryDetails(storyIDTxt.getText().toString(),storyTitleTxt.getText().toString());
-				return true;
-			}});*/
-		
-		
-		listView.setAdapter(cAdapter);
+							
 		
 	}
+	
 	
 	public void onStart(){
 		super.onStart();
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity: onStart()");
-
+		cAdapter=new SimpleCursorAdapter(this.getApplicationContext(),R.layout.list_view_layout,null,from,to,0);
+		if(this.getLoaderManager().getLoader(1)==null){
+			this.getLoaderManager().initLoader(1, null, this);
+		}
+		else
+			Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity: Removing the old loader and loading data a fresh");
+			this.getLoaderManager().destroyLoader(1);
+			this.getLoaderManager().initLoader(1, null, this);
+		listView.setAdapter(cAdapter);
 	}
 	
 	public void onResume(){
@@ -144,7 +128,8 @@ public class PersonalDiaryMainActivity extends Activity implements android.app.L
 
 	
 	public void onLoaderReset(Loader<Cursor> loader) {
-		
+		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryMainActivity:onLoaderReset called ");
+		cAdapter.changeCursor(null);
 		
 	}
 	

@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.anurag.personaldiary.R;
 import com.personaldiary.mainpackage.PersonalDiaryConstants;
+import com.personaldiary.mainpackage.PersonalDiaryMainActivity;
 
 import android.app.Activity;
 import android.content.ContentResolver;
@@ -27,7 +28,7 @@ import android.widget.TextView;
 
 public class StoryListHelper implements MultiChoiceModeListener {
 	
-	private Activity mainActivityRef;
+	private PersonalDiaryMainActivity mainActivityRef;
 	private ListView listView;
 	private Resources res;
 	private List<Integer> storyIDListToBeDeleted;
@@ -59,16 +60,25 @@ public class StoryListHelper implements MultiChoiceModeListener {
 		this.res = res;
 	}
 	
-	
 
 
-	public Activity getMainActivityRef() {
+	public PersonalDiaryMainActivity getMainActivityRef() {
 		return mainActivityRef;
 	}
 
 
-	public void setMainActivityRef(Activity mainActivityRef) {
+	public void setMainActivityRef(PersonalDiaryMainActivity mainActivityRef) {
 		this.mainActivityRef = mainActivityRef;
+	}
+
+
+	public ContentResolver getMainActivityContentRes() {
+		return mainActivityContentRes;
+	}
+
+
+	public void setMainActivityContentRes(ContentResolver mainActivityContentRes) {
+		this.mainActivityContentRes = mainActivityContentRes;
 	}
 
 
@@ -95,6 +105,8 @@ public class StoryListHelper implements MultiChoiceModeListener {
 			Cursor cursorObj=mainActivityContentRes.query(Uri.parse(PersonalDiaryConstants.PROVIDER_URL), selectProjection, selectSelection, selectionArgs, null);
 			deleteData(cursorObj);
 			mainActivityContentRes.delete(Uri.parse(PersonalDiaryConstants.PROVIDER_URL), selectSelection, selectionArgs);
+			mainActivityRef.getLoaderManager().destroyLoader(1);
+			mainActivityRef.getLoaderManager().initLoader(1, null, mainActivityRef);
 			Log.d(PersonalDiaryConstants.TAG,"Record deleted from the database");
 		}
 		return false;
