@@ -73,18 +73,29 @@
          android:layout_height="wrap_content"
          android:layout_above="@+id/body"
          android:layout_alignParentRight="true"
+         android:gravity="right"
          android:text="PlaceHolder"
          />
      
       <TextView
          android:id="@+id/storyPlaceHolder"
-         android:layout_width="wrap_content"
+         android:layout_width="200dp"
          android:layout_height="wrap_content"
          android:layout_below="@+id/titlePlaceHolder"
-         android:layout_alignLeft="@+id/titlePlaceHolder"
+         android:layout_alignRight="@+id/titlePlaceHolder"
+         android:gravity="right"
          android:layout_alignTop="@+id/body"
          android:text="PlaceHolder"
          />
-     
+
+      <TextView
+          android:id="@+id/imageNamePlaceHolder"
+          android:layout_width="200dp"
+          android:layout_height="wrap_content"
+          android:layout_alignBaseline="@+id/imageLabel"
+          android:layout_alignBottom="@+id/imageLabel"
+          android:layout_alignParentRight="true"
+          android:gravity="right"
+          android:text="PlaceHolder" />
 
 </RelativeLayout>

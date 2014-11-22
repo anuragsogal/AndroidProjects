@@ -31,7 +31,7 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 	PersonalDiaryHTTPRunnable httpRunnable;
 	Handler httpHandlerThreadHandler;
 	Handler thisThreadHandler;
-	TextView titlePlaceHolderText,bodyPlaceHolderText;
+	TextView titlePlaceHolderText,bodyPlaceHolderText,imageNamePlaceHolderText;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -45,6 +45,7 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		mController.setAnchorView(this.findViewById(R.layout.story_details_layout));
 		titlePlaceHolderText=(TextView)this.findViewById(R.id.titlePlaceHolder);
 		bodyPlaceHolderText=(TextView)this.findViewById(R.id.storyPlaceHolder);
+		imageNamePlaceHolderText=(TextView)this.findViewById(R.id.imageNamePlaceHolder);
 	}
 	
 	public void onStart(){
@@ -63,6 +64,7 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		imagePath=data.getString(4);
 		titlePlaceHolderText.setText(storyTitle);
 		bodyPlaceHolderText.setText(storyBody);
+		imageNamePlaceHolderText.setText(storyImageName);
 		iView.setImageURI(Uri.parse(imagePath));
 		vView.setVideoURI(Uri.parse(videoPath));
 		vView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
