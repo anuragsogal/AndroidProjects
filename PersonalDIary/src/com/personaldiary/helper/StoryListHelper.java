@@ -94,6 +94,8 @@ public class StoryListHelper implements MultiChoiceModeListener {
 			String[] selectionArgs={idToBeDeleted.toString()};
 			Cursor cursorObj=mainActivityContentRes.query(Uri.parse(PersonalDiaryConstants.PROVIDER_URL), selectProjection, selectSelection, selectionArgs, null);
 			deleteData(cursorObj);
+			mainActivityContentRes.delete(Uri.parse(PersonalDiaryConstants.PROVIDER_URL), selectSelection, selectionArgs);
+			Log.d(PersonalDiaryConstants.TAG,"Record deleted from the database");
 		}
 		return false;
 	}
@@ -136,23 +138,21 @@ public class StoryListHelper implements MultiChoiceModeListener {
 			cursorObj.moveToNext();
 			String storyImagePath=cursorObj.getString(PersonalDiaryConstants.STORY_IMAGE_PATH);
 			String storyVideoPath=cursorObj.getString(PersonalDiaryConstants.STORY_VIDEO_PATH);
-			File file;
+			File vidoeFileToBeDeleted,imageFileToBeDeleted;
 			try {
-				//file = new File(new URI("file:///storage/emulated/0/Movies/personalDiaryVideos/PersonalDiaryVID_2014-11-19_07%3A36%3A42.mp4"));
-				file = new File(new URI(storyVideoPath));
-				boolean deleted = file.delete();
+				vidoeFileToBeDeleted = new File(new URI(storyVideoPath));
+				imageFileToBeDeleted = new File(new URI(storyImagePath));
+				boolean isDeletedVideoFile = vidoeFileToBeDeleted.delete();
+				boolean isDeletedImageFile= imageFileToBeDeleted.delete();
+				if(isDeletedVideoFile && isDeletedImageFile){
+					Log.d(PersonalDiaryConstants.TAG,"The video and image file have been deleted");			
+				}
 			} catch (URISyntaxException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			//boolean exists=file.exists();
-			//boolean isFile=file.isHidden();
-		
-			Log.d(PersonalDiaryConstants.TAG,"Story image path is "+storyImagePath);
-			Log.d(PersonalDiaryConstants.TAG,"Story video path is "+storyVideoPath);
+			return true;
 		}
-		Log.d(PersonalDiaryConstants.TAG,"Number of items with that id are "+cursorObj.getCount());
 		return false;
 	}
 

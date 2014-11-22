@@ -26,7 +26,6 @@ public class PersonalDiaryContentProvider extends ContentProvider {
 		return true;
 	}
 
-	@Override
 	public Cursor query(Uri uri, String[] projection, String selection,
 			String[] selectionArgs, String sortOrder) {
 		String tableName=uri.getPath().replace("/","");
@@ -34,13 +33,12 @@ public class PersonalDiaryContentProvider extends ContentProvider {
 		return cursorObj;
 	}
 
-	@Override
+	
 	public String getType(Uri uri) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public Uri insert(Uri uri, ContentValues values) {
 		String tableName=uri.getPath().replace("/","");
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryContentProvider: Inserting a row of data in the table");
@@ -50,10 +48,10 @@ public class PersonalDiaryContentProvider extends ContentProvider {
 		return Uri.parse(uriString);
 	}
 
-	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
-		// TODO Auto-generated method stub
-		return 0;
+		String table=uri.getPath().replace("/","");
+		int rowsDeleted=dataBase.delete(table, selection, selectionArgs);
+		return rowsDeleted;
 	}
 
 	@Override

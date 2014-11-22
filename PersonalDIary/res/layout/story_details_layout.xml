@@ -60,11 +60,31 @@
             android:layout_marginTop="10dp"
             android:text="@string/imageLabel" />
 
-       <ImageView
+     <ImageView
            android:id="@+id/storyImageView"
            android:layout_width="200dp"
            android:layout_height="170dp"
            android:layout_alignParentBottom="true"
            android:layout_alignParentRight="true" />
+
+     <TextView
+         android:id="@+id/titlePlaceHolder"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/body"
+         android:layout_alignParentRight="true"
+         android:text="PlaceHolder"
+         />
+     
+      <TextView
+         android:id="@+id/storyPlaceHolder"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/titlePlaceHolder"
+         android:layout_alignLeft="@+id/titlePlaceHolder"
+         android:layout_alignTop="@+id/body"
+         android:text="PlaceHolder"
+         />
+     
 
 </RelativeLayout>
