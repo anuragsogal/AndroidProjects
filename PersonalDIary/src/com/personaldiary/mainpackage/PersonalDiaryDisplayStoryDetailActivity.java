@@ -1,18 +1,25 @@
 package com.personaldiary.mainpackage;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import com.anurag.personaldiary.R;
 
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
@@ -32,6 +39,7 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 	Handler httpHandlerThreadHandler;
 	Handler thisThreadHandler;
 	TextView titlePlaceHolderText,bodyPlaceHolderText,imageNamePlaceHolderText;
+	Uri imageuri;
 	
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -65,8 +73,12 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		titlePlaceHolderText.setText(storyTitle);
 		bodyPlaceHolderText.setText(storyBody);
 		imageNamePlaceHolderText.setText(storyImageName);
-		iView.setImageURI(Uri.parse(imagePath));
-		vView.setVideoURI(Uri.parse(videoPath));
+		imageuri=Uri.parse(imagePath);
+		String imagePath=imageuri.getPath();
+		Bitmap imageBitmap= BitmapFactory.decodeFile(imagePath);
+		iView.setImageBitmap(imageBitmap);
+		Uri videoUri=Uri.parse(videoPath);
+		vView.setVideoURI(videoUri);
 		vView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 			public void onPrepared(MediaPlayer mp) {
 				Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: The video is ready to be played ");
@@ -96,6 +108,7 @@ public class PersonalDiaryDisplayStoryDetailActivity extends Activity {
 		Log.d(PersonalDiaryConstants.TAG,"PersonalDiaryDisplayStoryDetailActivity: onDestroy()");
 	}
 	
+
 
 
 }

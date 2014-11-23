@@ -46,6 +46,8 @@
             
         </activity>
         
+       
+        
         <provider
          android:name="com.personaldiary.mainpackage.PersonalDiaryContentProvider" 
          android:authorities="com.personaldiary.mainpackage.PersonalDiaryContentProvider" 

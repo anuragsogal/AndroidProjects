@@ -61,11 +61,12 @@
             android:text="@string/imageLabel" />
 
      <ImageView
-           android:id="@+id/storyImageView"
-           android:layout_width="200dp"
-           android:layout_height="170dp"
-           android:layout_alignParentBottom="true"
-           android:layout_alignParentRight="true" />
+         android:id="@+id/storyImageView"
+         android:layout_width="fill_parent"
+         android:layout_height="170dp"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentRight="true" 
+        />
 
      <TextView
          android:id="@+id/titlePlaceHolder"
