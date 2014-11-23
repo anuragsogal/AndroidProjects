@@ -9,13 +9,13 @@
     <TextView
         android:id="@+id/storyIDTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="18dp"
         android:textColor="#000000"
-        android:text="TextView" />
+        android:text="placeHolder" />
 
      <TextView
         android:id="@+id/dot"
@@ -30,29 +30,21 @@
     <TextView
         android:id="@+id/storyTitleTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignBaseline="@+id/storyIDTextView"
-        android:layout_alignBottom="@+id/storyIDTextView"
+        android:layout_alignTop="@+id/storyIDTextView"
         android:layout_marginLeft="20dp"
         android:layout_toRightOf="@+id/storyIDTextView"
-        android:textSize="20sp"
         android:textColor="#000000"
-        android:text="TextView" />
+        android:text="placeHolder" />
 
-   <FrameLayout
-       android:id="@+id/imageFrame"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_alignTop="@+id/dot"
-       android:layout_marginLeft="29dp"
-       android:layout_toRightOf="@+id/storyTitleTextView"
-       >
+   
        <ImageView 
            android:id="@+id/imageViewTransition"
            android:layout_width="fill_parent"
            android:layout_height="fill_parent"
-           android:src="@drawable/trash_icon"
+           android:layout_alignTop="@+id/storyTitleTextView"
            />
-   </FrameLayout>
+  
 
 </RelativeLayout>

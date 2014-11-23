@@ -129,11 +129,11 @@ public class StoryListHelper implements MultiChoiceModeListener {
 		Integer idToBeDeleted=Integer.parseInt(storyIDTxtView.getText().toString());
 		ImageView checkedIndicatorImage= (ImageView)listItemView.findViewById(R.id.imageViewTransition);
 		if(checkedStatus){
-			checkedIndicatorImage.setImageDrawable(res.getDrawable(R.drawable.ic_launcher));
+			checkedIndicatorImage.setImageDrawable(res.getDrawable(R.drawable.trash_icon));
 			storyIDListToBeDeleted.add(idToBeDeleted);
 		}
 		else{
-			checkedIndicatorImage.setImageDrawable(res.getDrawable(R.drawable.trash_icon));
+			checkedIndicatorImage.setImageDrawable(null);
 			for(int i=0;i<storyIDListToBeDeleted.size();i++){
 				int idsInTheList=storyIDListToBeDeleted.get(i);
 				if(idsInTheList==idToBeDeleted)
